@@ -36,15 +36,12 @@ async function createIntent(req,res)
         .then(response => "") 
 
 const responsetouser = responses[0].name;
-
-if (responsetouser !== '') 
-{
-    res.send(respData);
-  }
-else{
-res.send('Intent with this name already exists').status(403);
-}  
-}
+let respData = {
+    data: responsetouser
+  };
+  res.send(respData);
+ 
+} 
 
   
 module.exports={

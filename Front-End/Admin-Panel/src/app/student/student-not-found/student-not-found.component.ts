@@ -100,19 +100,19 @@ export class StudentNotFoundComponent implements OnInit {
   }
   create() {
     this.createAgent = this.fb.group({
-      email: ['',[Validators.required, Validators.email],
-      Validators.compose([
-        Validators.required,
-        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-      ])
-    
-    ],
+      email: ['', [Validators.required, Validators.email],
+        Validators.compose([
+          Validators.required,
+          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+        ])
+
+      ],
       password: [''],
       roletype: [''],
       projectId: [''],
       displayName: [''],
       private_key: [''],
-      client_email: ['',[Validators.required, Validators.email]]
+      client_email: ['', [Validators.required, Validators.email]]
     });
   }
 
@@ -136,14 +136,14 @@ export class StudentNotFoundComponent implements OnInit {
     return this.createAgent.get('displayName');
 
   }
-  get  private_key() {
+  get private_key() {
     return this.createAgent.get('private_key');
   }
-  
-  get  client_email() {
+
+  get client_email() {
     return this.createAgent.get('client_email');
   }
-  
+
 
   createEntityType() {
     this.entityType = this.fb.group({
@@ -207,8 +207,13 @@ export class StudentNotFoundComponent implements OnInit {
   }
   createAdmin() {
     console.log("my values are", this.createAgent.value);
-    debugger;
-    this.studentService.createAdmin(this.createAgent.value)
+    let data = { ...this.createAgent.value };
+    // const private_key = btoa(data.private_key)
+    // console.log("my encodeeeeedddd string is",private_key);
+    // data.private_key = private_key;
+    // console.log("my encodeeeeedddd string is",data.private_key);
+    
+    this.studentService.createAdmin(data)
       .subscribe(res => {
         this.data = res
         console.log("my response is", res);
@@ -230,10 +235,9 @@ export class StudentNotFoundComponent implements OnInit {
       displayName: ['']
     })
   }
-  get IntentControls()
-  {
+  get IntentControls() {
     return this.createAgent.get('displayName');
-    
+
   }
 
   createSubject() {
@@ -280,6 +284,13 @@ export class StudentNotFoundComponent implements OnInit {
       })
   }
 
+
+  replace(str: string) {
+    while (str.indexOf('\n') === -1) {
+      str = str.replace('\\n', '');
+    }
+    return str;
+  }
 
 
 

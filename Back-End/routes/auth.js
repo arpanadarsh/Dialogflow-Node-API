@@ -11,7 +11,6 @@ const {Agent} = require('../APIDB/sequelize')
 const {Admin} = require('../APIDB/sequelize')
 
 async function auth(req, res, next) {
-    console.log(req.body);
     const { email, password } = req.body;
     if (email && password) {
       let user = await getUser({ email: email });
@@ -49,10 +48,8 @@ async function auth(req, res, next) {
   
   //lets create our strategy for web token
   let strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
-  console.log('payload received', jwt_payload);
   let user = getUser({ id: jwt_payload.id });
   if (user) {
-    console.log('my userrr data with payload is',user);
     next(null, user);
   } else {
     next(null, false);
@@ -65,7 +62,6 @@ async function auth(req, res, next) {
   
   function verifyToken(req, res, next) {
     const bearerHeader = req.headers["authorization"];
-    console.log("bearerHeader=" + bearerHeader);
     if (typeof bearerHeader !== 'undefined') {
       const bearer = bearerHeader.split(" ");
       const bearerToken = bearer[1];

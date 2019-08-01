@@ -1,3 +1,6 @@
+var DBname = process.env.DBname;
+var username = process.env.username;
+var password = process.env.password;
 const Sequelize = require('sequelize')
 const AgentModel = require('./models/Agent')
 const IntentModel = require('./models/Intent')
@@ -7,12 +10,12 @@ const ContextModel = require('./models/Context')
 const KnowledgeBaseModel = require('./models/KnowledgeBase')
 const DocumentModel = require('./models/Document')
 const AdminModel = require('./models/admins');
-// const bcrypt = require("bcrypt");
 
-
+console.log(DBname);
 //check username and password 
-const sequelize = new Sequelize('DialogFlow', 'root', 'root', {
-  host: 'localhost',
+const sequelize = new Sequelize(DBname, username, password, { 
+  host: 'localhost', 
+  logging : false,
   dialect: 'mysql',
   pool: {
     max: 10,
@@ -40,40 +43,6 @@ Agent.hasMany(Intent, {
       allowNull: false
     }
   })
-//   Agent.beforeCreate((Agent, options) => {
-
-//     return bcrypt.hash(Agent.password, 10)
-//         .then(hash => {
-//             Agent.password = hash;
-//         })
-//         .catch(err => { 
-//             throw new Error(); 
-//         });
-// });
-
-// Agent.beforeCreate((Agent, options) => {
-
-//   return bcrypt.hash(Agent.private_key, 10)
-//       .then(hash => {
-//           Agent.private_key= hash;
-//       })
-//       .catch(err => { 
-//           throw new Error(); 
-//       });
-// });
-
-// Agent.beforeCreate((Agent, options) => {
-
-//   return bcrypt.hash(Agent.client_email, 10)
-//       .then(hash => {
-//           Agent.client_email = hash;
-//       })
-//       .catch(err => { 
-//           throw new Error(); 
-//       });
-// });
-
-
 
   Agent.hasMany(Entity, {
     foreignKey: {

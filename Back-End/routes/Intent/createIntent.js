@@ -8,16 +8,13 @@ const {Intent} = require('../../APIDB/sequelize');
 // var config;
 async function createIntent(req,res)
 {
+
   const dialogflow = require('dialogflow');
   text = req.body.displayName;
-  let displayName;
   // Instantiates the Intent Client
-  
   const intentsClient = new dialogflow.IntentsClient(req.userData.dialogFlowCred);
-
   // The path to identify the agent that owns the created intent.
   const agentPath = intentsClient.projectAgentPath(req.userData.project_id);
-
   const intent = {
     displayName:`${text}`
   };
@@ -29,24 +26,26 @@ async function createIntent(req,res)
 
   // Create the intent
   const responses = await intentsClient.createIntent(createIntentRequest);
-  console.log(`Intent ${responses[0].name} created`);
+  console.log('Intent created ',req.body.displayName);
   
   const response = responses[0].name;
   const seperate = response.split ('/');
-  console.log("seperate isssss----",seperate);
   const newOject={"intentId": seperate[4],"projectId":seperate[1],"displayName":req.body.displayName};
-  console.log("-----------------.",seperate[1]);
   // console.log(newOject);
     Intent.create(newOject)
         .then(response => "") 
 
 const responsetouser = responses[0].name;
-let respData = {
-    data: responsetouser
-  };
-  res.send(respData);
- 
+
+if (responsetouser !== '') 
+{
+    res.send(respData);
+  }
+else{
+res.send('Intent with this name already exists').status(403);
 }  
+}
+
   
 module.exports={
   createIntent : createIntent

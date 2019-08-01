@@ -21,13 +21,13 @@ export class StudentService {
   }
 
   createAdmin(admin): Observable<any> {
-    debugger;
+
     const token = sessionStorage.getItem('token');
     const header = {
       headers: new HttpHeaders()
         .set('Authorization', token)
     };
-    return this.http.post<any>('http://localhost:3000/api/Agentcreate', admin, header);
+    return this.http.post<any>('http://localhost:3000/api/agentCreate', admin, header);
   }
 
   setInfo(key: string, value: any) {

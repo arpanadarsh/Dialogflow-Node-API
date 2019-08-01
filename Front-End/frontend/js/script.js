@@ -41,8 +41,9 @@ method: "POST",
 body: jsondata,
 headers: {
 "Content-Type": "application/json",
-"Authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjo3MzY3MzkzMDcwOSwiaWF0IjoxNTY0MDY3MjI1fQ.XKr25tlEs1EalkMO8bhWX1htsV593pm3lBTMBDW4seo"
+"Authorization":"Bearer " + sessionStorage.getItem('token'),
 }
+
 });
 console.log("------------->",response);
 var body = await response.json();
@@ -61,9 +62,11 @@ addMe(body.data, "received", id++);
 // addMe(res, "received", id++);
 //const otherParameters = {
 // headers:{
+
 // "content-type":"application/json; charset=UTF-8"
 // },
 // body:{
+
 // "text":"input"
 // },
 // method:"POST"
@@ -95,10 +98,22 @@ toggleViewBtn.innerText = "-";
 chatBox.style.height = "450px";
 inputBox.style.display = "block";
 
-var node = document.getElementById('chatContainer');
-if(node.innerText == ""){
-    search_p();
+// var node = document.getElementById('chatContainer');
+// if(node.innerText == ""){
+//     search_p();
+// }
+
+const data=sessionStorage.getItem('token');
+if(data)
+{
+    var node = document.getElementById('chatContainer');
+    if(node.innerText == ""){
+            search_p();
+        }
+
 }
+
+
 }
 }
 
@@ -162,7 +177,13 @@ method: "POST",
 beforeSend: function (xhr, settings) { xhr.setRequestHeader('Authorization', 'Bearer xxxx'); }, //set tokenString before send
 success: function (data, status, xhr) {
 //sessionStorage.setItem('token',)
-const token = xhr.getResponseHeader('token');
+// const token = xhr.getResponseHeader('token');
+// console.log("my token issssss",token);
+
+var getToken = sessionStorage.getItem('token');
+// ss
+sessionStorage.setItem('token', xhr.getResponseHeader('token'));
+
 console.log(data);
 //const res = JSON.parse(data);
 addMe(data.message,"received box-shadow","123");

@@ -1,5 +1,6 @@
 const {Agent} = require('./APIDB/sequelize')
 const jwt_Decode = require('jwt-decode');
+
 function userData(req, res, next) {
 
     const decoded = jwt_Decode(req.token);
@@ -15,7 +16,7 @@ function userData(req, res, next) {
         project_id: projectId,
         dialogFlowCred : {
           credentials: {
-            private_key: results[0].private_key.replace(/\\n/g,'\n'),
+            private_key: results[0].private_key,
             client_email: results[0].client_email
           }
         }
@@ -33,3 +34,4 @@ function userData(req, res, next) {
   module.exports = {
       userData : userData
   }
+ 

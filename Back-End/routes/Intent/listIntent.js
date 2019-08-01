@@ -1,12 +1,11 @@
 // const express = require('express');
 // const credentials = require ('../../Cred');
 // const router  = express.Router();
-async function listIntents(req,res) {
+async function listIntent(req,res) {
     // [START dialogflow_list_intents]
     // Imports the Dialogflow library
     const dialogflow = require('dialogflow');
     // Instantiates clients
-    console.log("----------->",req.userData);
     const intentsClient = new dialogflow.IntentsClient(req.userData.dialogFlowCred);
   
     // The path to identify the agent that owns the intents.
@@ -15,12 +14,10 @@ async function listIntents(req,res) {
       parent: projectAgentPath,
     	};
   
-    console.log("SSSSSSSSSSSSSSSSSSSSSS",projectAgentPath);
+    console.log(projectAgentPath);
   
     // Send the request for listing intents.
-    const [response] = await intentsClient.listIntents(request).catch(error=>{
-      console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXX",error);
-    }    );
+    const [response] = await intentsClient.listIntents(request);
     response.forEach(intent => {
       console.log('====================');
       console.log(`Intent name: ${intent.name}`);
@@ -49,5 +46,5 @@ async function listIntents(req,res) {
     }
     //console.log(responsetouser);
   module.exports = {
-      listIntents : listIntents
+      listIntent : listIntent
   };

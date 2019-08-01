@@ -1,3 +1,6 @@
+process.env.DBname = '';
+process.env.username = '';
+process.env.password = '';
 const express = require('express');
 const router = express.Router();
 const app = express();
@@ -27,7 +30,11 @@ const getAgent = require('./routes/Agent/getAgent.js')
 const trainAgent = require('./routes/Agent/trainAgent.js')
 const jwt_Decode = require('jwt-decode');
 
-
+// req.credentials = {
+//   DBname: DialogflowAPI,
+//   username : root,
+//   password : arpan
+// }
 //var mytoken = {}
 router.use(bodyParser());
 router.use(function (req, res, next) {
@@ -47,9 +54,9 @@ router.post('/createIntent',authentication.verifyToken, credentials.userData, in
 router.delete('/deleteIntent',  authentication.verifyToken, credentials.userData, intentDelete.deleteIntent);
 router.post('/createEntityType',  authentication.verifyToken, credentials.userData, entityTypeCreate.createEntityType);
 router.post('/createEntity',  authentication.verifyToken, credentials.userData, entityCreate.createEntity);
-router.get('/detectIntent',  authentication.ensureToken, credentials.userData, intentDetect.detectIntent);
+router.post('/detectIntent',  authentication.ensureToken, intentDetect.detectIntent);
 router.get('/detectTextIntent', intentTextDetect.detectTextIntent);
-router.get('/listIntent',  authentication.verifyToken, credentials.userData,intentList.listIntents);
+router.get('/listIntent',  authentication.verifyToken, credentials.userData,intentList.listIntent);
 router.post('/createKB',  authentication.verifyToken, credentials.userData,createKB.createKnowledgeBase);
 router.delete('/deleteKB',  authentication.verifyToken, credentials.userData,deleteKB.deleteKnowledgeBase);
 router.get('/getKB',  authentication.verifyToken, credentials.userData,getKB.getKnowledgeBase);
@@ -63,9 +70,17 @@ router.post('/firstMessage',  authentication.authenticate, function (req, res) {
 router.get('/protected', passport.authenticate('jwt', { session: false }), function (req, res) {
   res.json('Success! You can now see this without a token.');
 });
-
+ function replaceAll(str) {
+    let data = str;
+    while (data.indexOf('\n') == 0) {
+    data = data.replace('\\n', '\n');
+    }
+    return data;
+  }
 router.post('/api/agentCreate', (req, res) => {
-  Agent.create(req.body)
+  var data = {...req.body};
+data.private_key = data.private_key.replace(/(\\n)/gm,"\n");
+  Agent.create(data)
     .then(result => res.json(result));
 })
 router.post('/api/create', (req, res) => {

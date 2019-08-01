@@ -78,10 +78,11 @@
         <div class="col-md-6">
           <div class="form-group">
             <label class="control-label">Private Key</label>
-            <input required class="form-control" formControlName="private_key" id="private_key" type="text" />
+            <input required class="form-control" formControlName="private_key" id="private_key" type="text"/>
             <div *ngIf="private_key.invalid && (private_key.dirty || private_key.touched)" class="alert alert-danger">
               <div *ngIf="private_key.errors.required">
                 Private Key is required.
+
               </div>
             </div>
           </div>

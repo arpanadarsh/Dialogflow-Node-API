@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 
+=======
+// const express = require('express');
+// const router = express.Router();
+// const credentials = require ('../../Cred');
+>>>>>>> master
 const {EntityType} = require('../../APIDB/sequelize');
 
 async function createEntityType(req,res) {
@@ -38,4 +44,8 @@ async function createEntityType(req,res) {
 
  module.exports = {
   createEntityType : createEntityType
+<<<<<<< HEAD
  }
+=======
+ }
+>>>>>>> master

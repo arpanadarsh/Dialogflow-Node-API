@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+// const express = require('express');
+// const router = express.Router();
+// const credentials = require ('../../Cred');
+>>>>>>> master
 const {Intent} = require('../../APIDB/sequelize');
 async function deleteIntent(req,res) {
   // [START dialogflow_delete_intent]

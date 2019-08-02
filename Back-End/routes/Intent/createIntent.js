@@ -1,6 +1,12 @@
 
+<<<<<<< HEAD
 const {Intent} = require('../../APIDB/sequelize');
+=======
+>>>>>>> master
 
+const {Intent} = require('../../APIDB/sequelize');
+// const {Agent} = require('../../APIDB/sequelize');
+// var config;
 async function createIntent(req,res)
 {
 
@@ -36,8 +42,12 @@ let respData = {
   };
   res.send(respData);
  
+<<<<<<< HEAD
 } 
 
+=======
+}  
+>>>>>>> master
   
 module.exports={
   createIntent : createIntent

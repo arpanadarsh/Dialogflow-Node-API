@@ -62,104 +62,91 @@ export class StudentNavComponent {
       disabled: true,
       iconName: "create",
       route: "/company/intents",
-      isOnlyFor:"all",
+      isOnlyFor:"admin",
       children: [
         {
           displayName: "create",
           disabled: false,
           iconName: "remove_red_eye",
           route: "/company/intents/create",
-          isOnlyFor:"all",
+          isOnlyFor:"admin",
           children: []
         },
         {
-          displayName: "delete",
+          displayName: "View",
           disabled: false,
           iconName: "remove_red_eye",
-          route: "/student/assignments/dfdf",
-          isOnlyFor:"all",
+          route: "/company/intents/list",
+          isOnlyFor:"admin",
           children: []
         }
-      ]
-    },
-    {
-      displayName: "Entities",
-      disabled: true,
-      iconName: "description",
-      route: "/student/tasks",
-      isOnlyFor:"all",
-      children: [
-        {
-          displayName: "Create",
-          disabled: false,
-          iconName: "remove_red_eye",
-          route: "/student/viewstasks",
-          isOnlyFor:"all",
-          children: []
-        },
-        {
-          displayName: "",
-          disabled: false,
-          iconName: "remove_red_eye",
-          route: "/student/viewstasks",
-          isOnlyFor:"all",
-          children: []
-        },
-
-      ]
-    },
-    {
-      displayName: "Context",
-      disabled: true,
-      iconName: "description",
-      route: "/student/tasks",
-      isOnlyFor:"all",
-      children: [
-        {
-          displayName: "Create",
-          disabled: false,
-          iconName: "remove_red_eye",
-          route: "/student/viewtasks",
-          isOnlyFor:"all",
-          children: []
-        },
-        {
-          displayName: "Delete",
-          disabled: false,
-          iconName: "remove_red_eye",
-          route: "/student/viewtasks",
-          children: []
-        }
-
       ]
     },
     {
       displayName: "Knowledgebase ",
       disabled: true,
       iconName: "create",
-      route: "/student/assignments",
-      isOnlyFor:"all",
+      route: "/company/knowledgebase",
+      isOnlyFor:"admin",
       children: [
         {
           displayName: "Create",
           disabled: false,
           iconName: "remove_red_eye",
-          route: "/student/assignments",
-          isOnlyFor:"all",
+          route: "/company/knowledgebase/create",
+          isOnlyFor:"admin",
           children: []
         },
 
         {
-          displayName: "Delete",
+          displayName: "List",
           disabled: false,
           iconName: "remove_red_eye",
-          route: "/student/assignments",
-          isOnlyFor:"all",
+          route: "/company/knowledgebase/list",
+          isOnlyFor:"admin",
           children: []
         },
 
       ]
     },
+    {
+      displayName: "Entity Type",
+      disabled: true,
+      iconName: "description",
+      route: "/company/entitiesType",
+      isOnlyFor:"admin",
+      children: [
+        {
+          displayName: "Create",
+          disabled: false,
+          iconName: "remove_red_eye",
+          route: "/company/entitiesType/create",
+          isOnlyFor:"admin",
+          children: []
+        },
+      ]
+    },
+
+
+
+    {
+      displayName: "Entities",
+      disabled: true,
+      iconName: "description",
+      route: "/company/entities",
+      isOnlyFor:"admin",
+      children: [
+        {
+          displayName: "Create",
+          disabled: true,
+          iconName: "remove_red_eye",
+          route: "/company/entities/create",
+          isOnlyFor:"admin",
+          children: []
+        },
+      ]
+    },
+   
   ]
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)

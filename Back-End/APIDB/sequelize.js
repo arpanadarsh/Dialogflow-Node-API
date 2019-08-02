@@ -1,3 +1,6 @@
+var DBname = process.env.DBname;
+var username = process.env.username;
+var password = process.env.password;
 const Sequelize = require('sequelize')
 const AgentModel = require('./models/Agent')
 const IntentModel = require('./models/Intent')
@@ -8,10 +11,11 @@ const KnowledgeBaseModel = require('./models/KnowledgeBase')
 const DocumentModel = require('./models/Document')
 const AdminModel = require('./models/admins');
 
-
+console.log(DBname);
 //check username and password 
-const sequelize = new Sequelize('DialogflowDB', 'root', 'arpan', { 
-  host: 'localhost',
+const sequelize = new Sequelize(DBname, username, password, { 
+  host: 'localhost', 
+  logging : false,
   dialect: 'mysql',
   pool: {
     max: 10,
@@ -29,6 +33,10 @@ const Context = ContextModel(sequelize, Sequelize)
 const KnowledgeBase = KnowledgeBaseModel(sequelize, Sequelize)
 const Document = DocumentModel(sequelize, Sequelize)
 const Admin = AdminModel(sequelize,Sequelize);
+
+Admin.hasMany(Agent)
+
+
 Agent.hasMany(Intent, {
     foreignKey: {
       name: 'projectId',

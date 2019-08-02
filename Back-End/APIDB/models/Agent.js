@@ -1,10 +1,10 @@
+
+
 module.exports = (sequelize, type) => {
     return sequelize.define('Agent', {
       projectId: {
         type: type.STRING,
         primaryKey: true,
-        autoIncrement: false,
-        unique: true
       },
         
         displayName:{
@@ -49,5 +49,8 @@ module.exports = (sequelize, type) => {
           field: 'client_email',
           allowNull: false
         },
+          
+      
       })
+
 }

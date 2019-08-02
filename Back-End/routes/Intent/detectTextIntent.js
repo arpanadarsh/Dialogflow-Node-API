@@ -1,5 +1,8 @@
+<<<<<<< HEAD
+=======
 // const express = require('express')
 // const router  = express.Router()
+>>>>>>> master
 const util = require('util');
 const fs = require('fs');
 const {struct} = require('pb-util');
@@ -7,7 +10,10 @@ const pump = require('pump');
 const through2 = require('through2');
 const uuid = require('uuid');
 
+<<<<<<< HEAD
+=======
 //projectId = 'flights-bjrxvg'
+>>>>>>> master
 function detectTextIntent(req, res) {
 
   // [START dialogflow_detect_intent_text]
@@ -26,7 +32,11 @@ function detectTextIntent(req, res) {
 
   // The path to identify the agent that owns the created intent.
   const sessionPath = sessionClient.sessionPath(req.userData.project_id, sessionId);
+<<<<<<< HEAD
+
+=======
   // const logQueryResult = logQueryResult();
+>>>>>>> master
   let promise;
 
   // Detects the intent of the queries.

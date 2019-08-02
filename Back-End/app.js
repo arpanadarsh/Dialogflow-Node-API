@@ -1,6 +1,12 @@
+<<<<<<< HEAD
+process.env.DBname = '';
+process.env.username = '';
+process.env.password = '';
+=======
 process.env.DBname = 'Schemaname';
 process.env.username = 'Username';
 process.env.password = 'Password';
+>>>>>>> master
 const express = require('express');
 const router = express.Router();
 const app = express();

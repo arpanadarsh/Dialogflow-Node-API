@@ -1,11 +1,10 @@
 
-const express = require('express')
-const router  = express.Router()
-const cors = require('cors')
-const credentials = require ('../../Cred');
 const {Entity} = require('../../APIDB/sequelize');
 const {EntityType} = require('../../APIDB/sequelize');
+<<<<<<< HEAD
+=======
 //runSample is the function to detect intent
+>>>>>>> master
 async function createEntity(req,res) {
   
 const dialogflow = require('dialogflow');
@@ -57,7 +56,11 @@ const sessionId = uuid.v4();
     const responses = response[0].latestResponse.name;
     const seperate = responses.split ('/');
     console.log(responses.split ('/')[3]);
+<<<<<<< HEAD
+    const newObject = {"entityId": 		   seperate[3],"projectId":seperate[1],"entityTypeId":results[0].entityTypeId,"entityTypeName":responses[0].displayName,"Kind":responses[0].kind};
+=======
     const newObject = {"entityId": seperate[3],"projectId":seperate[1],"entityTypeId":results[0].entityTypeId,"entityTypeName":responses[0].displayName,"Kind":responses[0].kind};
+>>>>>>> master
     Entity.create(newObject);
   })
 }  

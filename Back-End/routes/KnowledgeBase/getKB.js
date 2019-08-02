@@ -1,6 +1,10 @@
+<<<<<<< HEAD
+
+=======
 // const express = require('express')
 // const router  = express.Router()
 // const credentials = require ('../../Cred');
+>>>>>>> master
 const {KnowledgeBase} = require('../../APIDB/sequelize');
 async function getKnowledgeBase(req,res) {
     // [START dialogflow_get_knowledge_base]

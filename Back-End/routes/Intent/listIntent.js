@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 // const express = require('express');
 // const credentials = require ('../../Cred');
 // const router  = express.Router();
+>>>>>>> master
 async function listIntent(req,res) {
     // [START dialogflow_list_intents]
     // Imports the Dialogflow library

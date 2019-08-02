@@ -1,19 +1,30 @@
+<<<<<<< HEAD
+=======
 const express = require('express')
 const router  = express.Router()
 const credentials = require ('../../Cred.js');
 
 
+>>>>>>> master
 async function detectIntent(req,res) {
 const dialogflow = require('dialogflow');
 const uuid = require('uuid');
 let text = req.body.text; 
 const sessionId = uuid.v4();
 const userData = {
+<<<<<<< HEAD
+  project_id : 'Your project-id',
+config :{
+  credentials :{
+  private_key: "Your private_key",
+  client_email: "Your client_email"
+=======
   project_id : 'Your project_id',
 config :{
   credentials :{
   private_key: "Your private_key",
   client_email:"Tour client_email"
+>>>>>>> master
     }
   }
 }
@@ -25,7 +36,7 @@ const request = {
   session: sessionPath,
   queryInput: {
     text: {
-      // The query to send to the dialogflow agent
+      // The query to send to the dialogflow agentou 
       text: `${text}`,
       // The language used by the client (en-US)
       languageCode: 'en-US',

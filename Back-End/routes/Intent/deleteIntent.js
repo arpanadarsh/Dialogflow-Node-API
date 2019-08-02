@@ -1,9 +1,4 @@
-// const express = require('express');
-// const router = express.Router();
-// const credentials = require ('../../Cred');
 const {Intent} = require('../../APIDB/sequelize');
-
-
 async function deleteIntent(req,res) {
   // [START dialogflow_delete_intent]
   // Imports the Dialogflow library

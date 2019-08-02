@@ -1,6 +1,4 @@
-// const express = require('express');
-// const router = express.Router();
-// const credentials = require ('../../Cred');
+
 const {EntityType} = require('../../APIDB/sequelize');
 
 async function createEntityType(req,res) {

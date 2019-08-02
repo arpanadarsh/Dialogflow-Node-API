@@ -1,11 +1,6 @@
 
-// const credentials = require ('../../Cred');
-// const express = require('express');
-// const router = express.Router();  
-// const bodyParser = require('body-parser')
 const {Intent} = require('../../APIDB/sequelize');
-// const {Agent} = require('../../APIDB/sequelize');
-// var config;
+
 async function createIntent(req,res)
 {
 
